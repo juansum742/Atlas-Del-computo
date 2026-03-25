@@ -1,0 +1,1696 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Atlas del Computo: historia interactiva, fronteras tecnicas y fuentes verificadas cientificamente." />
+  <title>Atlas del Computo | Historia Verificada y Fronteras Tecnologicas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Source+Sans+3:wght@300;400;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0f1117;
+      --ink-soft: #1b1f2a;
+      --paper: #f5f2ea;
+      --paper-2: #ede8de;
+      --line: #d4ccbe;
+      --muted: #595247;
+      --accent: #b23928;
+      --accent-2: #8e2a1f;
+      --accent-3: #9c7a2d;
+      --white: #ffffff;
+      --focus: #0a63dd;
+      --shadow: 0 20px 40px rgba(15, 17, 23, 0.12);
+      --radius: 10px;
+      --radius-sm: 6px;
+      --max: 1160px;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --font-mono: 'IBM Plex Mono', Consolas, monospace;
+    }
+
+    body.cb-protanopia {
+      --accent: #0072b2;
+      --accent-2: #005f94;
+      --accent-3: #e69f00;
+    }
+
+    body.cb-deuteranopia {
+      --accent: #d55e00;
+      --accent-2: #a94900;
+      --accent-3: #56b4e9;
+    }
+
+    body.cb-tritanopia {
+      --accent: #cc79a7;
+      --accent-2: #9e5d84;
+      --accent-3: #0072b2;
+    }
+
+    body.cb-achromatopsia {
+      --accent: #2f2f2f;
+      --accent-2: #1f1f1f;
+      --accent-3: #7a7a7a;
+      --line: #b8b8b8;
+      --muted: #3e3e3e;
+    }
+
+    body.theme-ocean {
+      --ink: #0e1620;
+      --ink-soft: #162331;
+      --paper: #eef5f8;
+      --paper-2: #e3edf2;
+      --line: #b7cdd9;
+      --muted: #3f5763;
+      --accent: #0f769f;
+      --accent-2: #0b5c7d;
+      --accent-3: #47a5bf;
+      background:
+        radial-gradient(circle at 14% 10%, rgba(15, 118, 159, 0.16), transparent 34%),
+        radial-gradient(circle at 86% 8%, rgba(71, 165, 191, 0.18), transparent 30%),
+        linear-gradient(180deg, #e8f2f7 0%, #dbe8ef 100%);
+    }
+
+    body.theme-sunrise {
+      --ink: #1e120f;
+      --ink-soft: #2f1a15;
+      --paper: #fff4ea;
+      --paper-2: #f8e8dc;
+      --line: #dfc8b6;
+      --muted: #694f42;
+      --accent: #c6561b;
+      --accent-2: #9d4517;
+      --accent-3: #dba64c;
+      background:
+        radial-gradient(circle at 20% 12%, rgba(198, 86, 27, 0.18), transparent 34%),
+        radial-gradient(circle at 88% 10%, rgba(219, 166, 76, 0.18), transparent 30%),
+        linear-gradient(180deg, #fff1e4 0%, #f7e4d2 100%);
+    }
+
+    body.theme-graphite {
+      --ink: #eceef3;
+      --ink-soft: #121826;
+      --paper: #181c24;
+      --paper-2: #141921;
+      --line: #3a4352;
+      --muted: #c4ccda;
+      --accent: #75a1ff;
+      --accent-2: #5f86dc;
+      --accent-3: #9ec0ff;
+      --white: #f4f7fc;
+      --focus: #d8e7ff;
+      background:
+        radial-gradient(circle at 22% 9%, rgba(117, 161, 255, 0.14), transparent 32%),
+        radial-gradient(circle at 84% 8%, rgba(158, 192, 255, 0.12), transparent 28%),
+        linear-gradient(180deg, #10141c 0%, #0b0f16 100%);
+    }
+
+    body.high-contrast {
+      --ink: #000000;
+      --ink-soft: #050505;
+      --paper: #ffffff;
+      --paper-2: #f5f5f5;
+      --line: #8f8f8f;
+      --muted: #1a1a1a;
+      --focus: #005fcc;
+    }
+
+    body.large-text { font-size: 19px; }
+
+    body.reduce-motion,
+    body.reduce-motion * {
+      animation-duration: 0.001ms !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 18% 8%, rgba(178, 57, 40, 0.08), transparent 35%),
+        radial-gradient(circle at 84% 10%, rgba(156, 122, 45, 0.07), transparent 30%),
+        linear-gradient(180deg, #f8f5ef 0%, #f2eee4 100%);
+      min-height: 100vh;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .skip-links {
+      position: absolute;
+      left: 0.5rem;
+      top: 0.5rem;
+      z-index: 9999;
+      display: flex;
+      gap: 0.45rem;
+    }
+
+    .skip-links a {
+      position: absolute;
+      transform: translateY(-150%);
+      background: var(--accent);
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 700;
+      padding: 0.55rem 0.8rem;
+      border-radius: 0.3rem;
+    }
+
+    .skip-links a:focus {
+      position: static;
+      transform: none;
+    }
+
+    #progress {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 4px;
+      z-index: 1200;
+      background: rgba(178, 57, 40, 0.15);
+    }
+
+    #progress .bar {
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-3));
+      transition: width 0.1s linear;
+    }
+
+    .container {
+      width: min(var(--max), 92%);
+      margin: 0 auto;
+    }
+
+    .tag {
+      display: inline-flex;
+      gap: 0.45rem;
+      align-items: center;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      border-radius: 999px;
+      padding: 0.18rem 0.65rem;
+      font-family: var(--font-mono);
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+    }
+
+    .tag::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1100;
+      background: rgba(14, 16, 23, 0.95);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      color: var(--white);
+    }
+
+    nav {
+      width: min(var(--max), 92%);
+      margin: 0 auto;
+      padding: 0.9rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      color: var(--white);
+      text-decoration: none;
+      font-family: var(--font-display);
+      font-size: 1.38rem;
+      letter-spacing: -0.02em;
+      font-weight: 700;
+    }
+
+    .brand span { color: #eb6f5d; }
+
+    .nav-right {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .links {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .links a {
+      color: rgba(255, 255, 255, 0.82);
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      border-bottom: 1px solid transparent;
+    }
+
+    .links a:hover,
+    .links a:focus-visible,
+    .links a[aria-current='true'] {
+      color: var(--white);
+      border-color: #eb6f5d;
+    }
+
+    .top-controls {
+      display: flex;
+      gap: 0.6rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .control,
+    .access-btn {
+      border: 1px solid rgba(255, 255, 255, 0.42);
+      background: transparent;
+      color: var(--white);
+      border-radius: 999px;
+      padding: 0.4rem 0.72rem;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .control { min-width: 94px; }
+
+    .control option { color: #111; }
+
+    .access-btn { cursor: pointer; }
+
+    .access-btn:hover,
+    .access-btn:focus-visible,
+    .control:focus-visible {
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    .a11y-panel {
+      position: fixed;
+      right: 1rem;
+      top: 5rem;
+      width: min(360px, calc(100vw - 2rem));
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      z-index: 1150;
+      padding: 1rem;
+      opacity: 0;
+      transform: translateY(-8px);
+      pointer-events: none;
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+
+    .a11y-panel.open {
+      opacity: 1;
+      transform: none;
+      pointer-events: auto;
+    }
+
+    .a11y-panel h2 {
+      font-family: var(--font-display);
+      font-size: 1.08rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .a11y-panel p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .a11y-grid { display: grid; gap: 0.55rem; }
+
+    .toggle,
+    .palette-select {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 0.55rem 0.65rem;
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 0.9rem;
+      width: 100%;
+    }
+
+    .toggle {
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .toggle:hover,
+    .toggle:focus-visible,
+    .palette-select:focus-visible {
+      border-color: var(--accent);
+      background: var(--white);
+    }
+
+    .toggle[aria-pressed='true'] {
+      border-color: var(--accent);
+      box-shadow: inset 0 0 0 1px var(--accent);
+      background: var(--white);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 7rem 0 5rem;
+      color: var(--white);
+      background:
+        linear-gradient(135deg, rgba(15, 17, 23, 0.95), rgba(22, 25, 35, 0.92)),
+        url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1900&q=70') center/cover;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 370px;
+      height: 370px;
+      border-radius: 50%;
+      pointer-events: none;
+      background: radial-gradient(circle, rgba(178, 57, 40, 0.35), transparent 66%);
+    }
+
+    .hero::before { left: -130px; top: -120px; animation: drift 14s ease-in-out infinite; }
+    .hero::after { right: -100px; bottom: -160px; animation: drift 16s ease-in-out infinite reverse; }
+
+    @keyframes drift {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(12px, -14px); }
+    }
+
+    @keyframes pulseSoft {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(178, 57, 40, 0.2); }
+      50% { box-shadow: 0 0 0 8px rgba(178, 57, 40, 0); }
+    }
+
+    @keyframes shimmerLine {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    @keyframes floatCard {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    @keyframes revealUp {
+      0% { opacity: 0; transform: translateY(16px) scale(0.985); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes slowZoom {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.045); }
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.95fr;
+      gap: 2rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(2.2rem, 5vw, 4.1rem);
+      line-height: 1.08;
+      margin: 0.95rem 0;
+      letter-spacing: -0.02em;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: #f18a79;
+    }
+
+    .hero p {
+      color: rgba(255, 255, 255, 0.86);
+      max-width: 65ch;
+    }
+
+    .hero-actions {
+      margin-top: 1.4rem;
+      display: flex;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: 0;
+      background: var(--accent);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 0.74rem 1.2rem;
+      font-weight: 700;
+      font-size: 0.92rem;
+      cursor: pointer;
+    }
+
+    .btn.alt {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      background: var(--accent-2);
+      transform: translateY(-2px);
+    }
+
+    .btn.alt:hover,
+    .btn.alt:focus-visible {
+      background: rgba(255, 255, 255, 0.16);
+      border-color: rgba(255, 255, 255, 0.6);
+    }
+
+    .hero-panel {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      border-radius: var(--radius);
+      padding: 1.1rem;
+      backdrop-filter: blur(6px);
+    }
+
+    .hero-panel h2 {
+      font-family: var(--font-display);
+      font-size: 1.26rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .hero-panel ul {
+      list-style: none;
+      display: grid;
+      gap: 0.55rem;
+    }
+
+    .hero-panel li {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.6rem;
+      border-top: 1px dashed rgba(255, 255, 255, 0.3);
+      padding-top: 0.5rem;
+      font-size: 0.92rem;
+      color: rgba(255, 255, 255, 0.86);
+    }
+
+    .hero-panel strong { font-family: var(--font-mono); color: #ffb9ae; }
+
+    .section { padding: 4.8rem 0; }
+    .section + .section { border-top: 1px solid var(--line); }
+
+    .section-head { margin-bottom: 2rem; }
+
+    .section-head h2 {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      margin-top: 0.7rem;
+      line-height: 1.15;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      margin-top: 0.65rem;
+      max-width: 72ch;
+    }
+
+    .kpis {
+      margin-top: 1rem;
+      display: grid;
+      gap: 0.7rem;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    }
+
+    .kpi {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem;
+      box-shadow: 0 8px 20px rgba(15, 17, 23, 0.05);
+    }
+
+    .kpi strong {
+      display: block;
+      color: var(--accent);
+      font-family: var(--font-mono);
+      font-size: 0.86rem;
+    }
+
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 320ms ease, transform 320ms ease;
+      transition-delay: var(--delay, 0ms);
+    }
+
+    [data-reveal].show {
+      opacity: 1;
+      transform: none;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 3px;
+    }
+  </style>
+</head>
+<body>
+  <div id="progress" aria-hidden="true"><div class="bar"></div></div>
+
+  <div class="skip-links" aria-label="Accesos rapidos">
+    <a href="#main-content" data-i18n="skip_content">Saltar al contenido</a>
+    <a href="#timeline" data-i18n="skip_timeline">Saltar a linea de tiempo</a>
+    <a href="#sources" data-i18n="skip_sources">Saltar a fuentes</a>
+  </div>
+
+  <header>
+    <nav aria-label="Navegacion principal">
+      <a href="#inicio" class="brand">Atlas<span>delComputo</span></a>
+      <div class="nav-right">
+        <ul class="links">
+          <li><a href="#timeline" data-i18n="nav_timeline">Linea de tiempo</a></li>
+          <li><a href="#components" data-i18n="nav_components">Componentes</a></li>
+          <li><a href="#gallery" data-i18n="nav_gallery">Galeria</a></li>
+          <li><a href="#displays" data-i18n="nav_displays">Pantallas</a></li>
+          <li><a href="#frontiers" data-i18n="nav_frontiers">Fronteras</a></li>
+          <li><a href="#curiosities" data-i18n="nav_curiosities">Curiosidades</a></li>
+          <li><a href="#sources" data-i18n="nav_sources">Fuentes</a></li>
+        </ul>
+        <div class="top-controls">
+          <label for="lang" class="sr-only" data-i18n="lang_label">Idioma</label>
+          <select id="lang" class="control" aria-label="Idioma" data-i18n-aria="lang_label">
+            <option value="es">🇪🇸 ES</option>
+            <option value="en">🇺🇸 EN</option>
+            <option value="pt">🇧🇷 PT</option>
+            <option value="fr">🇫🇷 FR</option>
+            <option value="zh">🇨🇳 ZH</option>
+            <option value="ru">🇷🇺 RU</option>
+            <option value="ko">🇰🇷 KO</option>
+            <option value="ja">🇯🇵 JA</option>
+          </select>
+          <button id="a11y-btn" class="access-btn" type="button" aria-expanded="false" aria-controls="a11y-panel" data-i18n="access_button">Accesibilidad</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <aside id="a11y-panel" class="a11y-panel" aria-hidden="true" aria-label="Panel de accesibilidad">
+    <h2 data-i18n="access_title">Panel de accesibilidad avanzada</h2>
+    <p data-i18n="access_desc">Incluye perfiles de color para diferentes tipos de daltonismo y ajustes de lectura.</p>
+    <div class="a11y-grid">
+      <button class="toggle" type="button" data-toggle="contrast" aria-pressed="false" data-i18n="toggle_contrast">Contraste alto</button>
+      <button class="toggle" type="button" data-toggle="text" aria-pressed="false" data-i18n="toggle_text">Texto grande</button>
+      <button class="toggle" type="button" data-toggle="motion" aria-pressed="false" data-i18n="toggle_motion">Reducir movimiento</button>
+      <button class="toggle" type="button" id="speak-summary" data-i18n="toggle_speak">Escuchar resumen</button>
+      <label for="palette" data-i18n="palette_label">Paleta para vision cromatica</label>
+      <select id="palette" class="palette-select" aria-label="Paleta de daltonismo" data-i18n-aria="palette_label">
+        <option value="normal" data-i18n="pal_normal">Vision estandar</option>
+        <option value="protanopia" data-i18n="pal_protanopia">Protanopia (rojo reducido)</option>
+        <option value="deuteranopia" data-i18n="pal_deuteranopia">Deuteranopia (verde reducido)</option>
+        <option value="tritanopia" data-i18n="pal_tritanopia">Tritanopia (azul reducido)</option>
+        <option value="achromatopsia" data-i18n="pal_achromatopsia">Acromatopsia (sin color)</option>
+      </select>
+      <label for="theme-palette" data-i18n="theme_label">Tema visual</label>
+      <select id="theme-palette" class="palette-select" aria-label="Tema visual" data-i18n-aria="theme_label">
+        <option value="default" data-i18n="theme_default">Clasico editorial</option>
+        <option value="ocean" data-i18n="theme_ocean">Oceano tecnico</option>
+        <option value="sunrise" data-i18n="theme_sunrise">Solar historico</option>
+        <option value="graphite" data-i18n="theme_graphite">Grafito nocturno</option>
+      </select>
+      <p class="sr-only" id="a11y-live" aria-live="polite"></p>
+    </div>
+  </aside>
+
+  <main id="main-content">
+    <section id="inicio" class="hero" aria-labelledby="hero-title">
+      <div class="container hero-grid" data-reveal>
+        <div>
+          <span class="tag" data-i18n="hero_tag">Verificado al 24 de marzo de 2026</span>
+          <h1 id="hero-title" data-i18n="hero_title">Historia real y <em>fronteras tecnicas</em> de la computacion</h1>
+          <p data-i18n="hero_text">Contenido ordenado por impacto historico, madurez tecnologica y evidencia cientifica de fuentes primarias.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#timeline" data-i18n="hero_cta1">Explorar linea interactiva</a>
+            <button class="btn alt" id="goto-frontiers" type="button" data-i18n="hero_cta2">Ir a fronteras tecnicas</button>
+          </div>
+        </div>
+        <section class="hero-panel" aria-labelledby="hero-panel-title">
+          <h2 id="hero-panel-title" data-i18n="panel_title">Resumen ejecutivo</h2>
+          <ul>
+            <li><span data-i18n="panel_1">Transicion de computo mecanico a IA multimodal</span><strong>1642-2026</strong></li>
+            <li><span data-i18n="panel_2">Eventos de guerra, ciencia y red global incluidos</span><strong>Linea cronologica</strong></li>
+            <li><span data-i18n="panel_3">Fronteras con traccion en industria y academia</span><strong>5 dominios</strong></li>
+            <li><span data-i18n="panel_4">Fuentes primarias y papers enlazados</span><strong>Auditables</strong></li>
+          </ul>
+          <p id="audio-summary" class="sr-only" data-i18n="summary_audio">Resumen: esta pagina presenta la evolucion de la computacion con evidencia de fuentes primarias. Incluye timeline interactiva, componentes, fronteras tecnologicas y referencias cientificas verificables.</p>
+        </section>
+      </div>
+    </section>
+
+    <div class="container">
+      <section class="section" aria-labelledby="overview-title">
+        <header class="section-head" data-reveal>
+          <span class="tag" data-i18n="overview_tag">Estructura de lectura</span>
+          <h2 id="overview-title" data-i18n="overview_title">Informacion mejor ordenada para estudiar y comparar</h2>
+          <p data-i18n="overview_text">Primero contexto historico, luego componentes tecnicos, despues fronteras de la proxima decada, y finalmente metodologia y fuentes.</p>
+          <div class="kpis" role="list" aria-label="Indicadores">
+            <article class="kpi" role="listitem"><strong data-i18n="kpi1_title">Verificacion temporal</strong><span data-i18n="kpi1_text">Datos revisados con corte: 24 de marzo de 2026.</span></article>
+            <article class="kpi" role="listitem"><strong data-i18n="kpi2_title">Fuentes primarias</strong><span data-i18n="kpi2_text">Instituciones: CERN, DARPA, IEA, W3C, Nature, Stanford HAI.</span></article>
+            <article class="kpi" role="listitem"><strong data-i18n="kpi3_title">Accesibilidad</strong><span data-i18n="kpi3_text">WCAG, teclado, lector de pantalla, paletas para daltonismo.</span></article>
+            <article class="kpi" role="listitem"><strong data-i18n="kpi4_title">Uso educativo</strong><span data-i18n="kpi4_text">Cada bloque incluye contexto, impacto y evidencia.</span></article>
+          </div>
+        </header>
+      </section>
+      <style>
+        .timeline-layout {
+          display: grid;
+          grid-template-columns: minmax(260px, 320px) 1fr;
+          gap: 1rem;
+          align-items: start;
+        }
+
+        .timeline-menu {
+          border: 1px solid var(--line);
+          border-radius: var(--radius);
+          background: var(--white);
+          box-shadow: 0 12px 26px rgba(15, 17, 23, 0.06);
+          padding: 0.8rem;
+          position: sticky;
+          top: 6.5rem;
+          max-height: 72vh;
+          overflow: auto;
+        }
+
+        .timeline-menu h3 {
+          font-family: var(--font-display);
+          font-size: 1.2rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .timeline-buttons {
+          display: grid;
+          gap: 0.45rem;
+        }
+
+        .timeline-btn {
+          border: 1px solid var(--line);
+          border-radius: var(--radius-sm);
+          background: var(--paper);
+          text-align: left;
+          padding: 0.55rem 0.6rem;
+          cursor: pointer;
+          font-size: 0.9rem;
+          color: var(--ink);
+        }
+
+        .timeline-btn:hover,
+        .timeline-btn:focus-visible,
+        .timeline-btn[aria-selected='true'] {
+          border-color: var(--accent);
+          background: var(--white);
+          box-shadow: inset 0 0 0 1px var(--accent);
+        }
+
+        .timeline-btn[aria-selected='true'] {
+          animation: pulseSoft 1.8s ease-in-out infinite;
+        }
+
+        .timeline-detail {
+          border: 1px solid var(--line);
+          border-radius: var(--radius);
+          background: linear-gradient(180deg, #ffffff, #fbf9f4);
+          padding: 1.2rem;
+          box-shadow: 0 14px 30px rgba(15, 17, 23, 0.07);
+          position: relative;
+          overflow: hidden;
+        }
+
+        .timeline-detail::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          height: 3px;
+          background: linear-gradient(90deg, transparent, var(--accent), transparent);
+          background-size: 200% 100%;
+          animation: shimmerLine 3.2s linear infinite;
+        }
+
+        .timeline-top {
+          display: flex;
+          gap: 0.7rem;
+          flex-wrap: wrap;
+          align-items: baseline;
+          margin-bottom: 0.6rem;
+        }
+
+        .timeline-year {
+          font-family: var(--font-mono);
+          font-size: 0.75rem;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          border: 1px solid rgba(178, 57, 40, 0.4);
+          border-radius: 999px;
+          color: var(--accent);
+          padding: 0.1rem 0.44rem;
+        }
+
+        .timeline-title {
+          font-family: var(--font-display);
+          font-size: 1.3rem;
+          line-height: 1.2;
+        }
+
+        .timeline-detail p {
+          color: var(--muted);
+          margin-bottom: 0.55rem;
+        }
+
+        .timeline-points {
+          margin: 0.5rem 0 0.8rem 1rem;
+          color: var(--muted);
+          display: grid;
+          gap: 0.3rem;
+          font-size: 0.94rem;
+        }
+
+        .timeline-sources {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.4rem;
+        }
+
+        .media-box {
+          border: 1px solid var(--line);
+          border-radius: var(--radius-sm);
+          overflow: hidden;
+          background: var(--paper);
+          margin: 0.65rem 0;
+        }
+
+        .media-box img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          animation: slowZoom 16s ease-in-out infinite;
+          transform-origin: center;
+        }
+
+        .media-box figcaption {
+          padding: 0.35rem 0.55rem 0.45rem;
+          font-family: var(--font-mono);
+          font-size: 0.68rem;
+          letter-spacing: 0.03em;
+        }
+
+        .media-box figcaption a {
+          color: var(--accent-2);
+          text-decoration: none;
+        }
+
+        .media-box figcaption a:hover {
+          text-decoration: underline;
+        }
+
+        .media-box.broken {
+          min-height: 160px;
+          display: grid;
+          place-items: center;
+          color: var(--muted);
+          font-family: var(--font-mono);
+          font-size: 0.72rem;
+        }
+
+        .media-box.broken::before {
+          content: attr(data-fallback);
+        }
+
+        .timeline-media {
+          aspect-ratio: 16 / 8.4;
+          box-shadow: 0 14px 24px rgba(15, 17, 23, 0.12);
+        }
+
+        .source-chip {
+          border: 1px solid var(--line);
+          border-radius: 999px;
+          padding: 0.2rem 0.5rem;
+          text-decoration: none;
+          color: var(--ink);
+          background: var(--paper);
+          font-family: var(--font-mono);
+          font-size: 0.72rem;
+        }
+
+        .source-chip:hover,
+        .source-chip:focus-visible {
+          border-color: var(--accent);
+          background: var(--white);
+        }
+
+        .components-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+          gap: 0.8rem;
+        }
+
+        .component-card {
+          border: 1px solid var(--line);
+          border-radius: var(--radius);
+          background: var(--white);
+          padding: 0.95rem;
+          box-shadow: 0 10px 24px rgba(15, 17, 23, 0.05);
+          transition: transform 180ms ease, box-shadow 180ms ease;
+        }
+
+        .component-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 18px 28px rgba(15, 17, 23, 0.1);
+        }
+
+        .component-card h3 {
+          font-family: var(--font-display);
+          font-size: 1.1rem;
+          margin-bottom: 0.35rem;
+        }
+
+        .component-card p {
+          color: var(--muted);
+          font-size: 0.93rem;
+          margin-bottom: 0.55rem;
+        }
+
+        .component-list {
+          margin-left: 1rem;
+          display: grid;
+          gap: 0.28rem;
+          color: var(--muted);
+          font-size: 0.9rem;
+        }
+
+        .component-hub {
+          margin-top: 1rem;
+          border: 1px solid var(--line);
+          border-radius: var(--radius);
+          background: var(--white);
+          box-shadow: 0 14px 28px rgba(15, 17, 23, 0.07);
+          padding: 1rem;
+        }
+
+        .component-hub-head h3 {
+          font-family: var(--font-display);
+          font-size: 1.24rem;
+          margin-bottom: 0.35rem;
+        }
+
+        .component-hub-head p {
+          color: var(--muted);
+          margin-bottom: 0.8rem;
+        }
+
+        .component-hub-controls {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.45rem;
+          margin-bottom: 0.7rem;
+        }
+
+        .component-tab {
+          border: 1px solid var(--line);
+          border-radius: 999px;
+          padding: 0.35rem 0.68rem;
+          background: var(--paper);
+          color: var(--ink);
+          font-family: var(--font-mono);
+          font-size: 0.72rem;
+          letter-spacing: 0.05em;
+          text-transform: uppercase;
+          cursor: pointer;
+        }
+
+        .component-tab:hover,
+        .component-tab:focus-visible,
+        .component-tab[aria-selected='true'] {
+          border-color: var(--accent);
+          background: var(--white);
+          box-shadow: inset 0 0 0 1px var(--accent);
+        }
+
+        .component-hub-detail {
+          border: 1px solid var(--line);
+          border-radius: var(--radius-sm);
+          background: linear-gradient(180deg, #ffffff, #fdfbf7);
+          padding: 0.9rem;
+          display: grid;
+          gap: 0.8rem;
+        }
+
+        .hub-grid {
+          display: grid;
+          grid-template-columns: minmax(180px, 260px) 1fr;
+          gap: 0.8rem;
+          align-items: start;
+        }
+
+        .hub-visual-stack {
+          display: grid;
+          gap: 0.6rem;
+        }
+
+        .hub-visual {
+          border: 1px solid var(--line);
+          border-radius: var(--radius-sm);
+          background: var(--paper);
+          padding: 0.65rem;
+          min-height: 160px;
+          display: grid;
+          place-items: center;
+          animation: floatCard 4.5s ease-in-out infinite;
+        }
+
+        .hub-svg {
+          width: min(230px, 100%);
+          height: auto;
+        }
+
+        .hub-photo {
+          aspect-ratio: 4 / 3;
+        }
+
+        .hub-body h4 {
+          font-family: var(--font-display);
+          font-size: 1.16rem;
+          margin-bottom: 0.35rem;
+        }
+
+        .hub-body p {
+          color: var(--muted);
+          margin-bottom: 0.35rem;
+          font-size: 0.93rem;
+        }
+
+        .hub-evolution {
+          border-top: 1px dashed var(--line);
+          padding-top: 0.55rem;
+          display: grid;
+          gap: 0.45rem;
+        }
+
+        .hub-era {
+          border-left: 3px solid var(--accent);
+          padding-left: 0.55rem;
+        }
+
+        .hub-era strong {
+          display: block;
+          font-family: var(--font-mono);
+          font-size: 0.76rem;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: var(--accent);
+        }
+
+        .hub-era span {
+          color: var(--muted);
+          font-size: 0.9rem;
+        }
+
+        .hub-sources {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.4rem;
+          margin-top: 0.35rem;
+        }
+
+        .display-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 0.8rem;
+        }
+
+        .gallery-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+          gap: 0.9rem;
+        }
+
+        .gallery-card {
+          border: 1px solid var(--line);
+          border-radius: var(--radius);
+          background: var(--white);
+          box-shadow: 0 14px 26px rgba(15, 17, 23, 0.07);
+          overflow: hidden;
+          display: grid;
+          grid-template-rows: auto 1fr;
+          transition: transform 200ms ease, box-shadow 200ms ease;
+        }
+
+        .gallery-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 24px 34px rgba(15, 17, 23, 0.14);
+        }
+
+        .component-card,
+        .component-hub,
+        .timeline-detail,
+        .gallery-card,
+        .display-card,
+        .curiosity-card,
+        .frontier-card {
+          animation: revealUp 620ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+          animation-delay: var(--stagger, 0ms);
+        }
+
+        .gallery-photo {
+          aspect-ratio: 4 / 3;
+          position: relative;
+          background:
+            linear-gradient(120deg, rgba(156, 122, 45, 0.2), rgba(178, 57, 40, 0.2)),
+            linear-gradient(180deg, #e7e2d9 0%, #dbd4c8 100%);
+          overflow: hidden;
+        }
+
+        .gallery-photo img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+
+        .gallery-photo.broken::before {
+          content: attr(data-fallback);
+          position: absolute;
+          inset: 0;
+          display: grid;
+          place-items: center;
+          font-family: var(--font-mono);
+          font-size: 0.76rem;
+          letter-spacing: 0.05em;
+          color: var(--muted);
+          text-transform: uppercase;
+        }
+
+        .gallery-body {
+          padding: 0.85rem;
+        }
+
+        .gallery-body h3 {
+          font-family: var(--font-display);
+          font-size: 1.08rem;
+          margin-bottom: 0.3rem;
+        }
+
+        .gallery-body p {
+          color: var(--muted);
+          font-size: 0.9rem;
+          margin-bottom: 0.45rem;
+        }
+
+        .display-card {
+          border: 1px solid var(--line);
+          border-radius: var(--radius);
+          background: var(--white);
+          padding: 0.9rem;
+          box-shadow: 0 14px 26px rgba(15, 17, 23, 0.06);
+          transition: transform 200ms ease, box-shadow 200ms ease;
+        }
+
+        .display-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 20px 34px rgba(15, 17, 23, 0.12);
+        }
+
+        .display-card h3 {
+          font-family: var(--font-display);
+          font-size: 1.14rem;
+          margin-bottom: 0.35rem;
+        }
+
+        .display-card p {
+          color: var(--muted);
+          font-size: 0.92rem;
+          margin-bottom: 0.4rem;
+        }
+
+        .display-card ul {
+          margin-left: 1rem;
+          display: grid;
+          gap: 0.24rem;
+          color: var(--muted);
+          font-size: 0.88rem;
+        }
+
+        .display-visual {
+          border: 1px solid var(--line);
+          border-radius: var(--radius-sm);
+          background: var(--paper);
+          padding: 0.45rem;
+          margin-bottom: 0.55rem;
+        }
+
+        .display-photo {
+          aspect-ratio: 16 / 9;
+          margin-bottom: 0.55rem;
+        }
+
+        .curiosity-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+          gap: 0.8rem;
+        }
+
+        .curiosity-card {
+          border: 1px solid var(--line);
+          border-radius: var(--radius);
+          background: linear-gradient(180deg, #ffffff, #fbfaf5);
+          padding: 0.88rem;
+          box-shadow: 0 12px 24px rgba(15, 17, 23, 0.06);
+          animation: floatCard 6.5s ease-in-out infinite;
+        }
+
+        .curiosity-card h3 {
+          font-family: var(--font-display);
+          font-size: 1.1rem;
+          margin-bottom: 0.3rem;
+        }
+
+        .curiosity-card p {
+          color: var(--muted);
+          font-size: 0.92rem;
+          margin-bottom: 0.4rem;
+        }
+
+        .curiosity-card a {
+          font-family: var(--font-mono);
+          font-size: 0.75rem;
+          color: var(--accent-2);
+          text-underline-offset: 3px;
+        }
+
+        .curiosity-photo {
+          aspect-ratio: 16 / 8.8;
+          margin-bottom: 0.45rem;
+        }
+
+        body.theme-ocean header {
+          background: rgba(8, 42, 59, 0.95);
+        }
+
+        body.theme-ocean {
+          background:
+            radial-gradient(circle at 14% 10%, rgba(15, 118, 159, 0.16), transparent 34%),
+            radial-gradient(circle at 86% 8%, rgba(71, 165, 191, 0.18), transparent 30%),
+            linear-gradient(180deg, #e8f2f7 0%, #dbe8ef 100%) !important;
+        }
+
+        body.theme-ocean .hero {
+          background: linear-gradient(130deg, rgba(5, 45, 66, 0.93), rgba(8, 69, 90, 0.88)), url('https://images.unsplash.com/photo-1464802686167-b939a6910659?auto=format&fit=crop&w=1900&q=70') center/cover;
+        }
+
+        body.theme-ocean .frontier-card {
+          background: linear-gradient(180deg, #0c3044, #0b2432);
+          border-color: #2f6078;
+        }
+
+        body.theme-sunrise header {
+          background: rgba(58, 28, 18, 0.95);
+        }
+
+        body.theme-sunrise {
+          background:
+            radial-gradient(circle at 20% 12%, rgba(198, 86, 27, 0.18), transparent 34%),
+            radial-gradient(circle at 88% 10%, rgba(219, 166, 76, 0.18), transparent 30%),
+            linear-gradient(180deg, #fff1e4 0%, #f7e4d2 100%) !important;
+        }
+
+        body.theme-sunrise .hero {
+          background: linear-gradient(130deg, rgba(80, 28, 10, 0.9), rgba(140, 58, 24, 0.86)), url('https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1900&q=70') center/cover;
+        }
+
+        body.theme-sunrise .frontier-card {
+          background: linear-gradient(180deg, #41261d, #2d1a13);
+          border-color: #80513e;
+        }
+
+        body.theme-graphite header {
+          background: rgba(8, 10, 15, 0.96);
+          border-bottom-color: rgba(142, 160, 204, 0.45);
+        }
+
+        body.theme-graphite {
+          background:
+            radial-gradient(circle at 22% 9%, rgba(117, 161, 255, 0.14), transparent 32%),
+            radial-gradient(circle at 84% 8%, rgba(158, 192, 255, 0.12), transparent 28%),
+            linear-gradient(180deg, #10141c 0%, #0b0f16 100%) !important;
+        }
+
+        body.theme-graphite .hero {
+          background: linear-gradient(130deg, rgba(12, 14, 20, 0.94), rgba(25, 29, 40, 0.9)), url('https://images.unsplash.com/photo-1510511459019-5dda7724fd87?auto=format&fit=crop&w=1900&q=70') center/cover;
+        }
+
+        body.theme-graphite .timeline-detail,
+        body.theme-graphite .component-card,
+        body.theme-graphite .component-hub,
+        body.theme-graphite .method-box,
+        body.theme-graphite .source-table-wrap,
+        body.theme-graphite .gallery-card,
+        body.theme-graphite .display-card,
+        body.theme-graphite .curiosity-card {
+          background: #1a202b;
+          border-color: #3a4355;
+          color: #e7edf7;
+        }
+
+        body.theme-graphite .section-head p,
+        body.theme-graphite .component-card p,
+        body.theme-graphite .hub-body p,
+        body.theme-graphite .gallery-body p,
+        body.theme-graphite .display-card p,
+        body.theme-graphite .curiosity-card p,
+        body.theme-graphite td,
+        body.theme-graphite .method-box p {
+          color: #c3cfde;
+        }
+
+        body.theme-graphite .gallery-photo {
+          background:
+            linear-gradient(120deg, rgba(117, 161, 255, 0.22), rgba(158, 192, 255, 0.22)),
+            linear-gradient(180deg, #273246 0%, #1d2532 100%);
+        }
+
+        body.theme-graphite .media-box {
+          background: #141b26;
+          border-color: #3a4355;
+        }
+
+        body.theme-graphite .media-box figcaption a {
+          color: #9ec0ff;
+        }
+
+        body.theme-graphite .source-chip,
+        body.theme-graphite .timeline-btn,
+        body.theme-graphite .component-tab,
+        body.theme-graphite .toggle,
+        body.theme-graphite .palette-select {
+          background: #111722;
+          color: #e4ebf8;
+          border-color: #42506b;
+        }
+
+        .frontier-grid {
+          display: grid;
+          gap: 0.8rem;
+        }
+
+        .frontier-card {
+          border: 1px solid #293346;
+          border-radius: var(--radius);
+          background: linear-gradient(180deg, #161d2a, #0f141d);
+          color: var(--white);
+          padding: 1rem;
+          box-shadow: 0 18px 36px rgba(7, 9, 12, 0.24);
+          position: relative;
+          overflow: hidden;
+          transition: transform 220ms ease, box-shadow 220ms ease;
+        }
+
+        .frontier-card::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.12) 45%, transparent 80%);
+          transform: translateX(-120%);
+          transition: transform 420ms ease;
+          pointer-events: none;
+        }
+
+        .frontier-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 24px 42px rgba(7, 9, 12, 0.32);
+        }
+
+        .frontier-card:hover::after {
+          transform: translateX(120%);
+        }
+
+        .frontier-media {
+          aspect-ratio: 16 / 7.6;
+          margin-bottom: 0.55rem;
+        }
+
+        .frontier-media img {
+          filter: saturate(1.08) contrast(1.03);
+        }
+
+        .frontier-card .media-box figcaption a {
+          color: #ffd2c8;
+        }
+
+        .frontier-top {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 0.6rem;
+          flex-wrap: wrap;
+          margin-bottom: 0.45rem;
+        }
+
+        .frontier-tag {
+          border: 1px solid rgba(235, 111, 93, 0.6);
+          color: #ffb9ae;
+          font-family: var(--font-mono);
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          font-size: 0.68rem;
+          border-radius: 999px;
+          padding: 0.15rem 0.45rem;
+        }
+
+        .frontier-card h3 {
+          font-family: var(--font-display);
+          font-size: 1.2rem;
+          line-height: 1.24;
+          margin-bottom: 0.4rem;
+        }
+
+        .frontier-card p {
+          color: rgba(255, 255, 255, 0.84);
+          margin-bottom: 0.45rem;
+          font-size: 0.92rem;
+        }
+
+        .frontier-list {
+          margin-left: 1rem;
+          display: grid;
+          gap: 0.3rem;
+          color: rgba(255, 255, 255, 0.86);
+          font-size: 0.89rem;
+        }
+
+        .method-box {
+          border: 1px solid var(--line);
+          border-radius: var(--radius);
+          background: var(--white);
+          padding: 1rem;
+          box-shadow: 0 12px 24px rgba(15, 17, 23, 0.05);
+          margin-bottom: 0.8rem;
+        }
+
+        .method-box h3 {
+          font-family: var(--font-display);
+          font-size: 1.22rem;
+          margin-bottom: 0.45rem;
+        }
+
+        .method-box p {
+          color: var(--muted);
+          margin-bottom: 0.45rem;
+        }
+
+        .source-table-wrap {
+          overflow-x: auto;
+          border: 1px solid var(--line);
+          border-radius: var(--radius-sm);
+          background: var(--white);
+          box-shadow: 0 14px 28px rgba(15, 17, 23, 0.06);
+        }
+
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          min-width: 840px;
+        }
+
+        caption {
+          caption-side: top;
+          text-align: left;
+          padding: 0.85rem 0.95rem;
+          color: var(--muted);
+        }
+
+        th {
+          background: var(--ink-soft);
+          color: var(--white);
+          text-align: left;
+          font-family: var(--font-mono);
+          text-transform: uppercase;
+          letter-spacing: 0.08em;
+          font-size: 0.7rem;
+          font-weight: 500;
+          padding: 0.75rem 0.82rem;
+        }
+
+        th:first-child { background: var(--accent); }
+
+        td {
+          padding: 0.75rem 0.82rem;
+          border-bottom: 1px solid var(--paper-2);
+          color: var(--muted);
+          font-size: 0.9rem;
+          vertical-align: top;
+        }
+
+        td:first-child {
+          color: var(--ink);
+          font-weight: 600;
+        }
+
+        td a { color: var(--accent-2); text-underline-offset: 2px; }
+
+        tbody tr:hover td {
+          background: #fff9f5;
+          color: var(--ink);
+        }
+
+        footer {
+          margin-top: 3rem;
+          background: #10151d;
+          color: rgba(255, 255, 255, 0.8);
+          border-top: 2px solid var(--accent);
+          text-align: center;
+          padding: 2.3rem 1rem;
+          font-size: 0.85rem;
+          line-height: 1.9;
+        }
+
+        .footer-brand {
+          display: block;
+          color: var(--white);
+          font-family: var(--font-display);
+          font-size: 1.22rem;
+          margin-bottom: 0.2rem;
+        }
+
+        footer a { color: #ffbaaf; text-underline-offset: 3px; }
+
+        @media (max-width: 980px) {
+          .hero-grid { grid-template-columns: 1fr; }
+          .timeline-layout { grid-template-columns: 1fr; }
+          .timeline-menu { position: static; }
+          .hub-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 680px) {
+          nav { justify-content: center; }
+          .links { justify-content: center; }
+          .hero-actions { flex-direction: column; align-items: stretch; }
+          .btn { width: 100%; }
+          .a11y-panel { top: 4.6rem; }
+        }
+
+        @media print {
+          #progress,
+          .skip-links,
+          .access-btn,
+          .a11y-panel,
+          .btn,
+          #lang { display: none !important; }
+          body { background: #fff; color: #000; }
+          .hero { background: #fff; color: #000; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          html { scroll-behavior: auto; }
+          *, *::before, *::after {
+            animation-duration: 0.001ms !important;
+            transition-duration: 0.001ms !important;
+          }
+        }
+      </style>
+
+      <section id="timeline" class="section" aria-labelledby="timeline-title">
+        <header class="section-head" data-reveal>
+          <span class="tag" data-i18n="timeline_tag">Menu temporal interactivo</span>
+          <h2 id="timeline-title" data-i18n="timeline_title">Linea de tiempo con hitos clave (incluye guerra, red e IA)</h2>
+          <p data-i18n="timeline_text">Selecciona un evento para ver su contexto historico, impacto tecnico y evidencia documental.</p>
+        </header>
+        <div class="timeline-layout">
+          <aside class="timeline-menu" data-reveal>
+            <h3 data-i18n="timeline_menu_title">Instancias historicas</h3>
+            <div class="timeline-buttons" id="timeline-buttons" role="tablist" aria-label="Eventos historicos"></div>
+          </aside>
+          <article class="timeline-detail" id="timeline-detail" data-reveal role="tabpanel" aria-live="polite"></article>
+        </div>
+      </section>
+
+      <section id="components" class="section" aria-labelledby="components-title">
+        <header class="section-head" data-reveal>
+          <span class="tag" data-i18n="components_tag">Componentes esenciales</span>
+          <h2 id="components-title" data-i18n="components_title">Mas detalle por componente y por que importa</h2>
+          <p data-i18n="components_text">Ahora incluye visualizacion de cada componente, evolucion por era, limites fisicos y fuentes por bloque.</p>
+        </header>
+        <div class="components-grid">
+          <article class="component-card" data-reveal>
+            <h3 data-i18n="comp_cpu_title">CPU y aceleradores</h3>
+            <p data-i18n="comp_cpu_text">De una unidad de calculo general a arquitecturas heterogeneas con NPU y bloques especializados.</p>
+            <ul class="component-list" id="comp-cpu-list"></ul>
+          </article>
+          <article class="component-card" data-reveal>
+            <h3 data-i18n="comp_mem_title">Memoria y ancho de banda</h3>
+            <p data-i18n="comp_mem_text">La velocidad de memoria define gran parte del rendimiento real en IA y analitica.</p>
+            <ul class="component-list" id="comp-mem-list"></ul>
+          </article>
+          <article class="component-card" data-reveal>
+            <h3 data-i18n="comp_storage_title">Almacenamiento</h3>
+            <p data-i18n="comp_storage_text">La transicion a NVMe transforma latencia, costos operativos y experiencia de usuario.</p>
+            <ul class="component-list" id="comp-storage-list"></ul>
+          </article>
+          <article class="component-card" data-reveal>
+            <h3 data-i18n="comp_network_title">Red y conectividad</h3>
+            <p data-i18n="comp_network_text">Sin red de alta capacidad no hay nube elastica, edge ni colaboracion global.</p>
+            <ul class="component-list" id="comp-network-list"></ul>
+          </article>
+        </div>
+        <article class="component-hub" data-reveal>
+          <div class="component-hub-head">
+            <h3 data-i18n="hub_title">Como se ve cada componente y como evoluciona</h3>
+            <p data-i18n="hub_text">Selecciona una familia para ver una vista esquematica, una mini linea de evolucion y fuentes directas.</p>
+          </div>
+          <div class="component-hub-controls" id="component-hub-controls" role="tablist" aria-label="Tipos de componente"></div>
+          <div class="component-hub-detail" id="component-hub-detail" role="tabpanel" aria-live="polite"></div>
+        </article>
+      </section>
+
+      <section id="gallery" class="section" aria-labelledby="gallery-title">
+        <header class="section-head" data-reveal>
+          <span class="tag" data-i18n="gallery_tag">Galeria visual real</span>
+          <h2 id="gallery-title" data-i18n="gallery_title">Como se ven los hitos del hardware en imagenes</h2>
+          <p data-i18n="gallery_text">Fotos de referencia historica para ubicar escala fisica, materiales y cambios de diseno en distintas epocas.</p>
+        </header>
+        <div class="gallery-grid" id="gallery-grid"></div>
+      </section>
+
+      <section id="frontiers" class="section" aria-labelledby="frontiers-title">
+        <header class="section-head" data-reveal>
+          <span class="tag" data-i18n="frontiers_tag">Fronteras tecnicas 2026+</span>
+          <h2 id="frontiers-title" data-i18n="frontiers_title">Tecnologias con traccion en industria y academia</h2>
+          <p data-i18n="frontiers_text">Cada bloque incluye estado, barrera principal, evidencia y por que importa en la proxima decada.</p>
+        </header>
+        <div class="frontier-grid" id="frontier-grid"></div>
+      </section>
+
+      <section id="displays" class="section" aria-labelledby="displays-title">
+        <header class="section-head" data-reveal>
+          <span class="tag" data-i18n="displays_tag">Pantallas y monitores</span>
+          <h2 id="displays-title" data-i18n="displays_title">Evolucion de visualizacion: CRT, LCD, OLED, mini-LED y mas</h2>
+          <p data-i18n="displays_text">Incluye como se ven las tecnologias de pantalla, ventajas tecnicas, limites y fuentes.</p>
+        </header>
+        <div class="display-grid" id="display-grid"></div>
+      </section>
+
+      <section id="curiosities" class="section" aria-labelledby="curiosities-title">
+        <header class="section-head" data-reveal>
+          <span class="tag" data-i18n="curiosities_tag">Curiosidades tecnicas</span>
+          <h2 id="curiosities-title" data-i18n="curiosities_title">Datos llamativos que explican por que la computacion cambio todo</h2>
+          <p data-i18n="curiosities_text">Pequenos hechos historicos y tecnicos con referencia para ampliar.</p>
+        </header>
+        <div class="curiosity-grid" id="curiosity-grid"></div>
+      </section>
+
+      <section id="sources" class="section" aria-labelledby="sources-title">
+        <header class="section-head" data-reveal>
+          <span class="tag" data-i18n="sources_tag">Fuentes y metodologia</span>
+          <h2 id="sources-title" data-i18n="sources_title">De donde sale cada dato</h2>
+          <p data-i18n="sources_text">Solo fuentes primarias o de alta credibilidad institucional. Se priorizan papers y organismos oficiales.</p>
+        </header>
+
+        <article class="method-box" data-reveal>
+          <h3 data-i18n="method_title">Metodo de verificacion</h3>
+          <p data-i18n="method_1">Fecha de corte de verificacion: 24 de marzo de 2026 (America/Montevideo).</p>
+          <p data-i18n="method_2">Criterio: 1) fuente primaria, 2) consistencia historica, 3) trazabilidad con enlace directo.</p>
+          <p data-i18n="method_3">Si un dato es estimado, se marca como orientativo en el texto.</p>
+        </article>
+
+        <div class="source-table-wrap" data-reveal>
+          <table>
+            <caption data-i18n="sources_caption">Referencias clave para historia y fronteras tecnicas.</caption>
+            <thead>
+              <tr>
+                <th data-i18n="col_topic">Tema</th>
+                <th data-i18n="col_claim">Dato verificado</th>
+                <th data-i18n="col_source">Fuente</th>
+                <th data-i18n="col_type">Tipo</th>
+                <th data-i18n="col_year">Ano</th>
+              </tr>
+            </thead>
+            <tbody id="source-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <span class="footer-brand">Atlas del Computo</span>
+    <p id="footer-line" data-i18n="footer_line">Pagina educativa con contenido verificable, accesible y multilingue.</p>
+    <p>
+      <a href="https://www.w3.org/WAI/" target="_blank" rel="noopener noreferrer">W3C WAI</a> ·
+      <a href="https://www.computerhistory.org/timeline/" target="_blank" rel="noopener noreferrer">Computer History Museum</a> ·
+      <a href="https://hai.stanford.edu/ai-index" target="_blank" rel="noopener noreferrer">Stanford AI Index</a>
+    </p>
+  </footer>
+   <script src="atlas.js"></script>
+</body>
+</html>
